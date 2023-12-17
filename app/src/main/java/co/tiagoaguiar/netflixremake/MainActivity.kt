@@ -1,34 +1,36 @@
 package co.tiagoaguiar.netflixremake
 
-import MainAdapter
+import CategoryAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import co.tiagoaguiar.netflixremake.model.Category
 import co.tiagoaguiar.netflixremake.model.Movie
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val movies = mutableListOf<Movie>()
+        val categories = mutableListOf<Category>()
 
-        for (i in 0..60) {
-            movies.add(
-                Movie(
-                    coverUrl = if (i % 2 == 0) R.drawable.movie_4 else R.drawable.movie
+        for (j in 1..10) {
+            val movies = mutableListOf<Movie>()
+            for (i in 1..5) {
+                movies.add(
+                    Movie(
+                        coverUrl = if (i % 2 == 0) R.drawable.movie_4 else R.drawable.movie
+                    )
                 )
-            )
+            }
+            categories.add(Category(name = "Category $j", movies))
         }
 
-        val adapter = MainAdapter(movies)
+        val adapter = CategoryAdapter(categories)
         val rv = findViewById<RecyclerView>(R.id.rv_main)
-        rv.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
 
     }
