@@ -1,103 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/dark_gray"
-    tools:context=".MovieActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/movie_img"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:src="@drawable/shadows"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintDimensionRatio="16:9"
-        android:scaleType="centerCrop" />
+        android:layout_height="match_parent"
+        android:background="@color/dark_gray"
+        tools:context=".MovieActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/movie_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/white" />
+        <ImageView
+            android:id="@+id/movie_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/shadows"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="16:9"
+            android:scaleType="centerCrop" />
 
-    <ImageView
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        app:layout_constraintTop_toTopOf="@id/movie_img"
-        app:layout_constraintStart_toStartOf="@id/movie_img"
-        app:layout_constraintBottom_toBottomOf="@id/movie_img"
-        app:layout_constraintEnd_toEndOf="@id/movie_img"
-        android:src="@drawable/ic_play"
-        android:contentDescription="play video" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/movie_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextColor="@color/white" />
 
-    <TextView
-        android:id="@+id/movie_txt_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Hello World"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/movie_img"
-        app:layout_constraintStart_toStartOf="@id/movie_img"
-        android:layout_marginStart="16dp"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginBottom="22dp" />
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:layout_constraintTop_toTopOf="@id/movie_img"
+            app:layout_constraintStart_toStartOf="@id/movie_img"
+            app:layout_constraintBottom_toBottomOf="@id/movie_img"
+            app:layout_constraintEnd_toEndOf="@id/movie_img"
+            android:src="@drawable/ic_play"
+            android:contentDescription="play video" />
 
-    <TextView
-        android:id="@+id/movie_txt_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/gray_light"
-        app:layout_constraintTop_toBottomOf="@id/movie_img"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
-        android:lineSpacingExtra="3sp"
-        android:maxLines="3"
-        android:ellipsize="end"
-        tools:text="hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world " />
+        <TextView
+            android:id="@+id/movie_txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Hello World"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/movie_img"
+            app:layout_constraintStart_toStartOf="@id/movie_img"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="22dp" />
 
-    <TextView
-        android:id="@+id/movie_txt_cast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/gray"
-        app:layout_constraintTop_toBottomOf="@id/movie_txt_desc"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
-        android:lineSpacingExtra="3sp"
-        android:maxLines="3"
-        android:ellipsize="end"
-        tools:text="hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world " />
+        <TextView
+            android:id="@+id/movie_txt_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_light"
+            app:layout_constraintTop_toBottomOf="@id/movie_img"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:lineSpacingExtra="3sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            tools:text="hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world " />
 
-    <TextView
-        android:id="@+id/txt_fixed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/similar"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/movie_txt_cast"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="24dp"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:textAllCaps="true" />
+        <TextView
+            android:id="@+id/movie_txt_cast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/movie_txt_desc"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:lineSpacingExtra="3sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            tools:text="hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world hello world " />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movie_rv_similar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_fixed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/txt_fixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/similar"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/movie_txt_cast"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginTop="24dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textAllCaps="true" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/movie_item_similar"
+            android:id="@+id/movie_rv_similar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txt_fixed"
+            android:layout_marginTop="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
