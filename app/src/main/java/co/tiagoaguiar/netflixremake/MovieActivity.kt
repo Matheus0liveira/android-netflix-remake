@@ -4,6 +4,7 @@ import MovieAdapter
 import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -28,7 +29,7 @@ class MovieActivity : AppCompatActivity() {
 
 
         val movies = mutableListOf<Movie>()
-        
+
         val adapter = MovieAdapter(movies, R.layout.movie_item_similar)
         rv.layoutManager = GridLayoutManager(this, 3)
         rv.adapter = adapter
@@ -47,5 +48,13 @@ class MovieActivity : AppCompatActivity() {
 
         val coverImg = findViewById<ImageView>(R.id.movie_img)
         coverImg.setImageDrawable(layerListDrawable)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId == android.R.id.home) finish()
+
+        return true
+
     }
 }
