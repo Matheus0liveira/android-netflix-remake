@@ -4,29 +4,40 @@ import MovieAdapter
 import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.netflixremake.model.Movie
+import co.tiagoaguiar.netflixremake.model.MovieDetail
+import co.tiagoaguiar.netflixremake.util.MovieTask
+import java.lang.IllegalStateException
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), MovieTask.Callback {
+
+    lateinit var txtTitle: TextView
+    lateinit var txtDesc: TextView
+    lateinit var txtCast: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
 
-        val txtTitle = findViewById<TextView>(R.id.movie_txt_title)
-        val txtDesc = findViewById<TextView>(R.id.movie_txt_desc)
-        val txtCast = findViewById<TextView>(R.id.movie_txt_cast)
+        val id = intent.getIntExtra("id", 1) ?: throw IllegalStateException("Id Not Found")
+
+        val url =
+            "https://api.tiagoaguiar.co/netflixapp/movie/$id?apiKey=c8fb62dd-d9bd-4b93-8991-20207311dbdf"
+        MovieTask(this).execute(url)
+
+
+        txtTitle = findViewById(R.id.movie_txt_title)
+        txtDesc = findViewById(R.id.movie_txt_desc)
+        txtCast = findViewById(R.id.movie_txt_cast)
         val rv = findViewById<RecyclerView>(R.id.movie_rv_similar)
-
-        txtTitle.text = "Batman Begins"
-        txtDesc.text = "Essa é a descrição do filme do Batman"
-        txtCast.text = getString(R.string.cast, "Ator A, Ator B, Atriz A, Atriz B")
-
 
         val movies = mutableListOf<Movie>()
 
@@ -57,4 +68,18 @@ class MovieActivity : AppCompatActivity() {
         return true
 
     }
+
+    override fun onResult(movieDetail: MovieDetail) {
+        Log.i("RSULTZZZ", movieDetail.toString())
+    }
+
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPreExecute() {
+        Toast.makeText(this, "LOADING", Toast.LENGTH_SHORT).show()
+    }
+
+
 }
