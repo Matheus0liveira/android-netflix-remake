@@ -2,6 +2,7 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,8 @@ import com.squareup.picasso.Picasso
 
 class MovieAdapter(
     private val movies: List<Movie>,
-    @LayoutRes private val layoutId: Int = R.layout.movie_item
+    @LayoutRes private val layoutId: Int = R.layout.movie_item,
+    private val onItemClickListener: ((Int) -> Unit)? = null
 ) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -40,6 +42,10 @@ class MovieAdapter(
 
 
             val imageCover = itemView.findViewById<ImageView>(R.id.img_cover)
+
+            imageCover.setOnClickListener {
+                onItemClickListener?.invoke(movie.id)
+            }
 
 //            Picasso.get().load(movie.coverUrl).into(imageCover)
             DownloadImageTask(object : DownloadImageTask.Callback {

@@ -1,6 +1,7 @@
 package co.tiagoaguiar.netflixremake
 
 import CategoryAdapter
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +25,13 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
         progressBar = findViewById(R.id.progress_main)
 
 
-        adapter = CategoryAdapter(categories)
+        adapter = CategoryAdapter(categories) {
+            val intent = Intent(this, MovieActivity::class.java)
+            intent.putExtra("id", it)
+
+            startActivity(intent)
+
+        }
         val rv = findViewById<RecyclerView>(R.id.rv_main)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
