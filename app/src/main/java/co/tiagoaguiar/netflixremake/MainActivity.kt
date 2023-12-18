@@ -16,23 +16,28 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), CategoryTask.Callback {
     private lateinit var progressBar: ProgressBar
+    private val categories = mutableListOf<Category>()
+    private lateinit var adapter: CategoryAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         progressBar = findViewById(R.id.progress_main)
 
-        val categories = mutableListOf<Category>()
 
-        val adapter = CategoryAdapter(categories)
+        adapter = CategoryAdapter(categories)
         val rv = findViewById<RecyclerView>(R.id.rv_main)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
-        CategoryTask(this).execute("https://api.tiagoaguiar.co/netflixapp/home2?apiKey=c8fb62dd-d9bd-4b93-8991-20207311dbdf")
+        CategoryTask(this).execute("https://api.tiagoaguiar.co/netflixapp/home?apiKey=c8fb62dd-d9bd-4b93-8991-20207311dbdf")
 
     }
 
     override fun onResult(categories: List<Category>) {
         progressBar.visibility = View.GONE
+
+        this.categories.clear()
+        this.categories.addAll(categories)
+        adapter.notifyDataSetChanged()
     }
 
     override fun onFailure(message: String) {
